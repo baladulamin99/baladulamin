@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD. BALADUL AMIN</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Set font-family to Inter for the entire body for consistency */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f0f2f5; /* Light gray background from Contact.html */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Custom styles for the contact form from Contact.html */
+        .form-container {
+            background-color: #ffffff; /* White background for the form */
+            padding: 2.5rem; /* Increased padding */
+            border-radius: 1.25rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
+            max-width: 600px; /* Max width for larger screens */
+            width: 100%;
+            box-sizing: border-box;
+            margin-left: auto; /* Center the form horizontally */
+            margin-right: auto; /* Center the form horizontally */
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.85rem 1rem; /* Slightly more padding */
+            margin-bottom: 1.25rem; /* More space between fields */
+            border: 1px solid #d1d5db; /* Light gray border */
+            border-radius: 0.625rem; /* Rounded corners for inputs */
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #6366f1; /* Indigo focus border */
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* Soft focus shadow */
+        }
+        .form-textarea {
+            min-height: 120px; /* Taller textarea */
+            resize: vertical; /* Allow vertical resizing */
+        }
+        .submit-button {
+            background-color: #6366f1; /* Indigo button */
+            color: #ffffff;
+            padding: 1rem 1.75rem; /* Generous padding */
+            border-radius: 0.75rem; /* Rounded button */
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%; /* Full width button */
+            border: none;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); /* Button shadow */
+        }
+        .submit-button:hover {
+            background-color: #4f46e5; /* Darker indigo on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        .submit-button:active {
+            transform: translateY(0); /* Press effect */
+            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+        }
+        /* Adjusted heading and label styles for consistency within the form */
+        .form-container h2 {
+            color: #1f2937; /* Darker text for heading */
+            margin-bottom: 1.75rem; /* More space below heading */
+            font-weight: 700;
+            text-align: center;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151; /* Medium dark text for labels */
+        }
+        /* Custom styles for skill bars */
+        .skill-bar-container {
+            background-color: #e0e7ff; /* Light indigo background */
+            border-radius: 0.5rem;
+            height: 1rem; /* Height of the bar */
+            overflow: hidden;
+        }
+        .skill-bar-fill {
+            background-color: #6366f1; /* Indigo fill color */
+            height: 100%;
+            border-radius: 0.5rem;
+            transition: width 1s ease-in-out; /* Smooth transition for width change */
+        }
+        /* Project menu dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .show {
+            display: block;
+        }
+        .dropbtn {
+            background-color: #6366f1;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .dropbtn:hover {
+            background-color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 sticky top-0 z-50 font-bold">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-indigo-700 rounded-md p-2 hover:bg-indigo-50 transition-colors">MD. BALADUL AMIN</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Home</a>
+                <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">About Me</a>
+                <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Service</a>
+                <a href="#skills" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Skills</a>
+        <!--    <a href="#team" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Team</a>    -->
+                <a href="#blog" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Blog </a>
+                <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-2 mt-2 rounded-md mx-4">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Home</a>
+            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">About Me</a>
+            <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Service</a>
+            <a href="#skills" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Skills</a>
+            <a href="#team" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Team</a>
+            <a href="#blog" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Blog </a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 md:py-32 flex items-center justify-center min-h-screen">
+            <div class="container mx-auto px-4 text-center">
+                <div class="flex flex-col md:flex-row items-center justify-center md:space-x-12">
+                    <div class="mb-8 md:mb-0">
+                        <img src="profil_photo.jpg" alt="" class="rounded-full shadow-lg border-4 border-white object-cover w-48 h-48 md:w-64 md:h-64 mx-auto">
+                    </div>
+                    <div class="max-w-2xl">
+                        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 animate-fade-in-down">
+                            Welcome my Website
+                        </h1>
+                        <p class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up text-justify">
+                           I'm Md. Baladul Amin, Here you can learn about my life, work and thoughts. </p>
+
+                        <a href="#about" class="bg-white text-indigo-700 hover:bg-indigo-100 font-bold py-3 px-8 rounded-full shadow-lg transition-all transform hover:scale-105 inline-block">
+                            Get to know me..
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">About ME</h2>
+                <div class="flex flex-col md:flex-row items-center md:space-x-12">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <img src="Cover.jpg" alt="" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                    </div>
+                    <div class="md:w-1/2 text-lg text-gray-700 leading-relaxed">
+                        <p class="mb-4 text-justify">
+                            আমার নাম MD BALADUL AMIN। আমি একজন উৎসাহী ব্যক্তি যিনি প্রযুক্তি, শিক্ষা এবং সামাজিক উন্নয়নে আগ্রহী। আমার লক্ষ্য হল নতুন কিছু শেখা এবং আমার জ্ঞান অন্যদের সাথে ভাগ করে নেওয়া।
+                        </p>
+                        <p class="mb-4 text-justify">
+                            আমার পেশাগত জীবনে, আমি বিভিন্ন প্রকল্পে কাজ করেছি যা আমাকে সমস্যা সমাধানের দক্ষতা এবং উদ্ভাবনী চিন্তাভাবনা বিকাশে সহায়তা করেছে। আমি সবসময় চ্যালেঞ্জ গ্রহণ করতে এবং নতুন দক্ষতা অর্জন করতে প্রস্তুত থাকি।
+                        </p>
+                        <p class="mb-4 text-justify">
+                            ব্যক্তিগতভাবে, আমি বই পড়তে, নতুন সংস্কৃতি সম্পর্কে জানতে এবং প্রকৃতির সাথে সময় কাটাতে পছন্দ করি। আমার বিশ্বাস যে শেখার কোনো শেষ নেই এবং প্রতিটি দিনই নতুন কিছু আবিষ্কারের সুযোগ।
+                        </p>
+                        <p class="text-justify">
+                            এই ওয়েবসাইটে, আমি আমার অভিজ্ঞতা, চিন্তাভাবনা এবং প্রকল্পগুলি আপনাদের সাথে ভাগ করে নেব। আশা করি আপনারা আমার এই যাত্রা উপভোগ করবেন।
+                        </p>
+                        <a href="https://drive.google.com/file/d/1Ej9CpHc9-0QIQqzG12gLF922H89JHPGw/view?usp=sharing" target="_blank" class="bg-white text-indigo-700 hover:bg-indigo-100 font-bold py-3 px-8 rounded-full shadow-lg transition-all transform hover:scale-105 inline-block">
+                            Download CV 
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Service</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="text-indigo-600 text-5xl mb-4 text-center"><i class="fas fa-code"></i></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Web Development</h3>
+                        <p class="text-gray-700 text-justify">I have create develop many web application. are you interested for check it? check projects.</p>
+                        
+                        <!-- Projects Dropdown Menu -->
+                        <div class="dropdown text-center">
+                            <button onclick="toggleDropdown()" class="dropbtn">Projects Check it <i class="fas fa-caret-down ml-2"></i></button>
+                            <div id="projectDropdown" class="dropdown-content">
+                                <a href="https://baladulamin99.github.io/cashapp/" target="_blank">Digital Wallet Cash Out Charge Calculator</a>
+                                <a href="https://www.amadersangbad.com/" target="_blank">Amader Sangbad News Website</a>
+                                <a href="https://baladulamin99.github.io/Honours-CGPA-Calculator/" target="_blank">Honours-CGPA-Calculator</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="text-indigo-600 text-5xl mb-4 text-center"><i class="fas fa-lightbulb"></i></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Creative solutions</h3>
+                        <p class="text-gray-700 text-justify">We provide innovative and effective ideas to solve your problems.</p>
+                    </div>
+
+                    
+                    <!-- Service Card 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="text-indigo-600 text-5xl mb-4 text-center"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Training and Consulting</h3>
+                        <p class="text-gray-700 text-justify">We provide training and advice on various technical topics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">My Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skill Card: HTML -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-semibold text-gray-900">HTML5</h3>
+                            <span class="text-gray-700 font-medium">90%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card: CSS -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-semibold text-gray-900">CSS3 & Tailwind CSS</h3>
+                            <span class="text-gray-700 font-medium">85%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card: JavaScript -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-semibold text-gray-900">JavaScript</h3>
+                            <span class="text-gray-700 font-medium">15%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card: Graphic Design -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-semibold text-gray-900">Graphic Design</h3>
+                            <span class="text-gray-700 font-medium">80%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card: Responsive Design -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-semibold text-gray-900">Responsive Design</h3>
+                            <span class="text-gray-700 font-medium">90%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card: Problem Solving -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-semibold text-gray-900">Problem Solving</h3>
+                            <span class="text-gray-700 font-medium">95%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section (Placeholder)
+        <section id="team" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Team Member 1
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://shorturl.at/1CsRR" alt="টিম সদস্য ১" class="rounded-full w-32 h-32 mx-auto mb-4 object-cover border-4 border-indigo-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Md. Ruhul Amin Roton</h3>
+                        <p class="text-indigo-600 font-medium mb-2">Editor & Publisher</p>
+                        <p class="text-gray-600 text-sm text-justify">Md. Ruhul Amin Ratan is the editor of Atti magazine. He has been associated with this magazine for a long time and has been publishing it efficiently.</p>
+                    </div>
+                    <!-- Team Member 2 
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://shorturl.at/iN2Nx" alt="টিম সদস্য ২" class="rounded-full w-32 h-32 mx-auto mb-4 object-cover border-4 border-indigo-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Md. Boni Amin </h3>
+                        <p class="text-indigo-600 font-medium mb-2">Banker</p>
+                        <p class="text-gray-600 text-sm text-justify">He has been working in the banking sector for a long time and is currently working at BRAC Bank PLC.</p>
+                    </div>
+                    <!-- Team Member 3 
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://shorturl.at/dCMhN" alt="টিম সদস্য ৩" class="rounded-full w-32 h-32 mx-auto mb-4 object-cover border-4 border-indigo-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Ismat Joha </h3>
+                        <p class="text-indigo-600 font-medium mb-2"> Assistent Manager </p>
+                        <p class="text-gray-600 text-sm text-justify">Currently plays the role of a government manager in this company</p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    
+        <!-- Blog Section -->
+        <section id="blog" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Blog</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://www.amadersangbad.com/wp-content/uploads/2024/09/1726120830191.jpeg" alt="ব্লগ পোস্ট ১" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">চুয়াডাঙ্গার যুব সমাজ: পরিবর্তনের দাবি</h3>
+                            <p class="text-gray-600 text-sm mb-4">তারিখ:  সেপ্টেম্বর ১৭, ২০২৪</p>
+                            <p class="text-gray-700 mb-4 text-justify">বর্তমান যুগ বিশ্বায়নের যুগ। এই বিশ্বায়নের যুগে প্রতিনিয়ত মানুষ তার জীবন মান উন্নয়নের জন্য সংগ্রাম করে যাচ্ছে। সেই সংগ্রাম করার পেছনে সবচেয়ে বড় কারণ স্বাচ্ছন্দে জীবনধারণ এবং সমাজে নিজেকে সম্মানজনক স্থানে প্রতিষ্ঠিত করা। সমাজের সকল স্তরের মানুষের মতো যুব সমাজের কিছু নিজস্ব মতামত রয়েছে। সেই মতামত তুলে আনার জন্য আমরা গিয়েছিলাম চুয়াডাঙ্গা সরকারি কলেজ সহ আশেপাশের বিভিন্ন স্কুল কলেজের নানা স্তরের শিক্ষার্থীদের কাছে। কিছু শিক্ষার্থীর সাথে কথা বলে আমরা তাদের চাহিদা  এবং প্রত্যাশার কথা জানতে চেষ্টা করি।
+
+বর্তমান শিক্ষাব্যবস্থা নিয়ে শিক্ষার্থীদের মতামত জানতে চাইলে তারা জানায়, “বর্তমান শিক্ষাব্যবস্থায় আমরা শুধুমাত্র পুথিগত বিদ্যা এবং পাঠ্যবই নিয়ে আটকে আছি, যার কারণে আমাদের বর্তমান প্রতিযোগিতার বাজারে ভালো কিছু করা সম্ভাবনা কমে যাচ্ছে।”</p>
+                            <a href="https://www.amadersangbad.com/?p=1497" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium">বিস্তারিত পড়ুন <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Blog Post 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://qph.cf2.quoracdn.net/main-qimg-5e8e71e8dc50aae30c43ad97ea107e88" alt="ব্লগ পোস্ট ২" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">সমীকরণ</h3>
+                            <p class="text-gray-600 text-sm mb-4">তারিখ: আগস্ট ০৮, ২০২৫</p>
+                        বালাদুল আমিন: মানুষ পৃথিবী নামক নীল গ্রহের সবথেকে সৃষ্টিশীল জীব। যাদের আছে ক্ষুরধর চিন্তাশক্তি। সেই চিন্তাশক্তি কাজে লাগিয়ে মানুষ পৃথিবী নামক নীল গ্রহকে জয় করেছে। তবে মানুষ পৃথিবীকে জয় করতে পারলেও ব্যাক্তি মানুষের কাছে সবকিছুতে যেন একটি অপূর্ণার ছাপ থেকেয় যায়। কারণ মানুষ তার জীবনের সকল আশা, আকাঙ্খাকে পরিপূর্ণতা দিতে চাই। যদিও সবসময় তা পরিপূর্ণতা পায়না। মানুষ তার ব্যাক্তি জীবনে স্বাস্থ্য, শিক্ষা, সংস্কৃতিতে সমৃদ্বি চাই। আবার মানুষ ভালোবাস পেয়ে পূর্ণতা পেতে চাই, ভালোবাসা হারিয়ে গভীর বেদনায় নিমজ্জিত হয় আবার অপূর্ণাতর বেদনায় নিমগ্ন থাকলে ভালোবাসে মানুষ। প্রকৃতপক্ষে মানুষ কখনো তার নিজেকে সন্তুষ্ঠ রাখতে পারে না। কারণ মানুষ তার চাওয়া আর পাওয়ার মাপকাঠিতে কখনো সমান হতে পারে না। 
+                        </p>
+                            <a href="https://like.amadersangbad.com/post/" class="text-indigo-600 hover:text-indigo-800 font-medium">বিস্তারিত পড়ুন <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Blog Post 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://placehold.co/600x300/e0e7ff/4338ca?text=ব্লগ+পোস্ট+৩" alt="ব্লগ পোস্ট ৩" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">স্বাস্থ্যকর জীবনযাপন</h3>
+                            <p class="text-gray-600 text-sm mb-4">তারিখ: জুলাই ২২, ২০২৫</p>
+                            <p class="text-gray-700 mb-4 text-justify">একটি স্বাস্থ্যকর জীবনযাপন আমাদের দৈনন্দিন জীবনে কতটা গুরুত্বপূর্ণ তা নিয়ে এই ব্লগ পোস্টে আলোচনা করা হয়েছে।</p>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">বিস্তারিত পড়ুন <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="#" class="bg-indigo-600 text-white hover:bg-indigo-700 font-bold py-3 px-8 rounded-full shadow-lg transition-all transform hover:scale-105 inline-block">
+                        See More Blog..
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Contact</h2>
+                <div class="form-container">
+                    <h2 class="text-3xl">Get in Touch</h2>
+                    <!--
+                        IMPORTANT: The 'action' attribute below is a placeholder.
+                        To make this form functional, you need to replace 'YOUR_BACKEND_ENDPOINT_OR_FORMSPREE_URL'
+                        with a real URL that can process form submissions.
+                        This could be:
+                        1. Your server-side script endpoint (e.g., '/submit-contact-form')
+                        2. A third-party service URL (e.g., 'https://formspree.io/f/your-email-hash')
+                    -->
+                    <form id="contactForm" action="https://formspree.io/f/xyzpjkog" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Phone</label>
+                            <input type="phone" id="phone" name="phone" class="form-input" placeholder="+880-1XXX-XXXXXX" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-input" placeholder="Subject of your message" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Your message here..." required></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="submit-button">Send Message</button>
+                        </div>
+						
+                    </form>
+                    <div id="responseMessage" class="mt-4 text-center text-sm font-medium hidden"></div>
+                </div>
+            </div>
+        </section>
+		
+    </main>
+	
+    <!-- Go Top Button -->
+    <button id="goTopButton" class="fixed bottom-6 right-6 p-4 bg-indigo-600 text-white rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        <i class="fas fa-arrow-up text-xl">  </i>
+    </button>
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.facebook.com/baladulamin99" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors text-3xl">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/baladulamin99/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors text-3xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/baladulamin99" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors text-3xl">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/baladulamin99/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors text-3xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://youtube.com/@baladulamin99" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors text-3xl">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+           
+			<!-- Contact Information Added Here -->
+                    <div class="mb-8 text-center text-White-700">
+                        <p class="mb-2"><i class="fas fa-phone-alt mr-2 text-indigo-600"></i> <a href="tel:+8801921-160172" class="hover:underline">+8801921-160172</a></p>
+                                                 <p class="mb-2"><i class="fas fa-envelope mr-2 text-indigo-600"></i> <a href="mailto:allinternetid@gmail.com" class="hover:underline">allinternetid@gmail.com</a></p>
+                        <p><i class="fas fa-map-marker-alt mr-2 text-indigo-600"></i> Chuadanga, Khulna Division, Bangladesh</p>
+                    </div>
+                    <!-- End Contact Information -->
+			
+			<p class="text-gray-400 text-sm">© <span id="current-year"></span> Copyright By Md. Baladul Amin || It is illegal to use any text, images, audio or video from this website without permission.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get the current year for the copyright notice
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu after clicking a link
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Toggle mobile menu visibility
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside (optional, but good UX)
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // JavaScript for contact form submission (from Contact.html)
+        document.getElementById('contactForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target;
+            const responseMessageDiv = document.getElementById('responseMessage');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            // Show a loading indicator
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            responseMessageDiv.classList.add('hidden'); // Hide previous messages
+
+            try {
+                // IMPORTANT: Replace 'YOUR_BACKEND_ENDPOINT_OR_FORMSPREE_URL' with your actual endpoint.
+                // For Formspree, it would look like: https://formspree.io/f/your-email-hash
+                // For your own backend, it would be your API endpoint.
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form), // Use FormData to easily get form fields
+                    headers: {
+                        'Accept': 'application/json' // Important for Formspree to return JSON
+                    }
+                });
+
+                if (response.ok) {
+                    responseMessageDiv.textContent = 'Thank you! Your message has been sent.';
+                    responseMessageDiv.className = 'mt-4 text-center text-sm font-medium text-green-600'; // Green for success
+                    form.reset(); // Clear the form
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        responseMessageDiv.textContent = 'Error: ' + data.errors.map(err => err.message).join(', ');
+                    } else {
+                        responseMessageDiv.textContent = 'Oops! There was a problem sending your message.';
+                    }
+                    responseMessageDiv.className = 'mt-4 text-center text-sm font-medium text-red-600'; // Red for error
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                responseMessageDiv.textContent = 'Network error or unable to connect. Please try again later.';
+                responseMessageDiv.className = 'mt-4 text-center text-sm font-medium text-red-600'; // Red for error
+            } finally {
+                responseMessageDiv.classList.remove('hidden');
+                submitButton.textContent = 'Send Message';
+                submitButton.disabled = false;
+            }
+        });
+
+        // Go Top button functionality
+        const goTopButton = document.getElementById('goTopButton');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                goTopButton.classList.remove('opacity-0', 'pointer-events-none');
+                goTopButton.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                goTopButton.classList.remove('opacity-100', 'pointer-events-auto');
+                goTopButton.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        goTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        function toggleDropdown() {
+            document.getElementById("projectDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
